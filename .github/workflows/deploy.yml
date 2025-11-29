@@ -37,6 +37,10 @@ jobs:
       - name: Setup Pages
         uses: actions/configure-pages@v4
 
+      - name: Copy 404.html for SPA routing
+        run: |
+          cp dist/angular-performance-patterns/browser/index.html dist/angular-performance-patterns/browser/404.html
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
