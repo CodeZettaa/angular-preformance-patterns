@@ -1,0 +1,15 @@
+<div class="info-panel">
+  <h2>{{ title }}</h2>
+  <p class="description">{{ description }}</p>
+  @if (notes.length > 0) {
+    <div class="notes">
+      <h3>What to look for:</h3>
+      <ul>
+        @for (note of notes; track note) {
+          <li>{{ note }}</li>
+        }
+      </ul>
+    </div>
+  }
+</div>
+

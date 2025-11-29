@@ -1,0 +1,47 @@
+<div class="home">
+  <header class="hero">
+    <h1>Angular Performance Patterns</h1>
+    <p class="subtitle">
+      A collection of focused, realistic examples demonstrating performance best practices in Angular
+      19
+    </p>
+  </header>
+
+  <div class="examples">
+    <h2>Performance Examples</h2>
+    <p class="intro">
+      Each example demonstrates a specific performance pattern with clear explanations and
+      interactive demos. Open the browser console to see detailed logging.
+    </p>
+
+    <div class="example-grid">
+      @for (example of examples; track example.path) {
+        <div class="example-card">
+          <h3>{{ example.title }}</h3>
+          <p class="description">{{ example.description }}</p>
+          <ul class="key-points">
+            @for (point of example.keyPoints; track point) {
+              <li>{{ point }}</li>
+            }
+          </ul>
+          <a [routerLink]="example.path" class="example-link">View Example →</a>
+        </div>
+      }
+    </div>
+  </div>
+
+  <footer class="info">
+    <h3>About This Repository</h3>
+    <p>
+      This repository is designed to showcase senior-level Angular performance optimization
+      techniques. Each example is:
+    </p>
+    <ul>
+      <li><strong>Focused:</strong> Each example demonstrates one specific pattern</li>
+      <li><strong>Realistic:</strong> Examples use real-world scenarios</li>
+      <li><strong>Educational:</strong> Clear explanations and console logging</li>
+      <li><strong>Production-Ready:</strong> Code follows Angular best practices</li>
+    </ul>
+  </footer>
+</div>
+

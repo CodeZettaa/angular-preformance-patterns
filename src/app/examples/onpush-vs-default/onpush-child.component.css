@@ -1,0 +1,38 @@
+.onpush-child {
+  padding: 1.5rem;
+  background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+  border: 2px solid var(--success);
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(76, 175, 80, 0.2);
+  transition: all 0.3s ease;
+}
+
+.onpush-child:hover {
+  box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3);
+  transform: scale(1.02);
+}
+
+.render-count {
+  margin-top: 1.5rem;
+  padding: 1rem;
+  background: var(--surface);
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: var(--success);
+  text-align: center;
+  box-shadow: var(--shadow-sm);
+  border: 2px solid var(--success);
+}
+
+.note {
+  margin-top: 1rem;
+  padding: 0.75rem;
+  font-size: 0.95rem;
+  color: #2e7d32;
+  background: rgba(76, 175, 80, 0.1);
+  border-radius: 6px;
+  border-left: 3px solid var(--success);
+  font-weight: 500;
+}
+

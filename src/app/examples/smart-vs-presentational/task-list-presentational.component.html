@@ -1,0 +1,21 @@
+<div class="task-list-presentational">
+  <div class="header">
+    <h4>Presentational Component</h4>
+    <button (click)="addTask()">Add Task</button>
+  </div>
+
+  <div class="tasks">
+    @for (task of tasks(); track task.id) {
+      <app-task-item
+        [task]="task"
+        (toggle)="onTaskToggle($event)"
+        (delete)="onTaskDelete($event)"
+      />
+    }
+  </div>
+  <p class="summary">
+    Total: {{ tasks().length }} | Completed: {{ completedCount() }}
+  </p>
+  <p class="note">✅ Uses OnPush change detection - only re-renders when inputs change</p>
+</div>
+

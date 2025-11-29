@@ -1,0 +1,19 @@
+<nav class="navbar">
+  <div class="nav-container">
+    <a routerLink="/" class="logo">Angular Performance Patterns</a>
+    <div class="nav-links">
+      <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+        Home
+      </a>
+      <a routerLink="/onpush-vs-default" routerLinkActive="active">OnPush</a>
+      <a routerLink="/track-by-large-lists" routerLinkActive="active">TrackBy</a>
+      <a routerLink="/smart-vs-presentational" routerLinkActive="active">Smart/Presentational</a>
+      <a routerLink="/lazy-loading-and-preloading" routerLinkActive="active">Lazy Loading</a>
+      <a routerLink="/run-outside-angular" routerLinkActive="active">runOutsideAngular</a>
+    </div>
+  </div>
+</nav>
+
+<main class="main-content">
+  <router-outlet />
+</main>

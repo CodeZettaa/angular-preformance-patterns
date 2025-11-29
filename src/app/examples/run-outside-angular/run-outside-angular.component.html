@@ -1,0 +1,104 @@
+<app-info-panel
+  title="runOutsideAngular for Heavy Computations"
+  description="This example demonstrates how to run heavy computations outside Angular's zone to prevent unnecessary change detection cycles. Open the console to see the difference."
+  [notes]="[
+    'Heavy synchronous work blocks the main thread and triggers change detection',
+    'runOutsideAngular prevents change detection during heavy work',
+    'Use run() to re-enter Angular zone only when UI updates are needed',
+    'Watch the change detection counter to see the difference',
+    'Essential for CPU-intensive operations, image processing, etc.',
+    'The UI should remain responsive when using runOutsideAngular'
+  ]"
+/>
+
+<div class="example-container">
+  <div class="controls">
+    <h3>Controls</h3>
+    <p>Change Detection Cycles: <strong>{{ changeDetectionCount() }}</strong></p>
+    <button (click)="reset()">Reset Counter</button>
+  </div>
+
+  <div class="comparison">
+    <div class="comparison-item">
+      <h3>❌ Inside Angular Zone (Default)</h3>
+      <p class="warning">
+        Heavy work runs in Angular zone, triggering change detection on every cycle
+      </p>
+      <div class="actions">
+        <button
+          (click)="runHeavyWorkInside()"
+          [disabled]="isRunningInside() || isRunningOutside()"
+        >
+          Run Heavy Work (Sync)
+        </button>
+        <button
+          (click)="runAsyncWorkInside()"
+          [disabled]="isRunningInside() || isRunningOutside()"
+        >
+          Run Heavy Work (Async)
+        </button>
+      </div>
+      @if (isRunningInside()) {
+        <p class="status">⏳ Running...</p>
+      }
+      @if (resultInside() !== null) {
+        <div class="result">
+          <strong>Result:</strong> {{ resultInside() }}
+        </div>
+      }
+    </div>
+
+    <div class="comparison-item">
+      <h3>✅ Outside Angular Zone</h3>
+      <p class="success">
+        Heavy work runs outside Angular zone, then updates UI once
+      </p>
+      <div class="actions">
+        <button
+          (click)="runHeavyWorkOutside()"
+          [disabled]="isRunningInside() || isRunningOutside()"
+        >
+          Run Heavy Work (Sync)
+        </button>
+        <button
+          (click)="runAsyncWorkOutside()"
+          [disabled]="isRunningInside() || isRunningOutside()"
+        >
+          Run Heavy Work (Async)
+        </button>
+      </div>
+      @if (isRunningOutside()) {
+        <p class="status">⏳ Running...</p>
+      }
+      @if (resultOutside() !== null) {
+        <div class="result">
+          <strong>Result:</strong> {{ resultOutside() }}
+        </div>
+      }
+    </div>
+  </div>
+
+  <div class="explanation">
+    <h3>How It Works</h3>
+    <div class="code-example">
+      <h4>Inside Zone (Default - Not Recommended for Heavy Work):</h4>
+      <pre><code>// Heavy work runs in Angular zone
+const result = this.heavyCalculationService.performHeavyCalculation(50000000);
+this.result.set(result);
+// Triggers change detection on every cycle</code></pre>
+    </div>
+    <div class="code-example">
+      <h4>Outside Zone (Recommended for Heavy Work):</h4>
+      <pre><code>// Heavy work runs outside Angular zone
+this.ngZone.runOutsideAngular(() => &#123;
+  const result = this.heavyCalculationService.performHeavyCalculation(50000000);
+  // Re-enter zone only to update UI
+  this.ngZone.run(() => &#123;
+    this.result.set(result);
+  &#125;);
+&#125;);
+// Only triggers change detection once for UI update</code></pre>
+    </div>
+  </div>
+</div>
+

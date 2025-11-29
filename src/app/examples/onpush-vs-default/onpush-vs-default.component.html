@@ -1,0 +1,37 @@
+<app-info-panel
+  title="OnPush vs Default Change Detection"
+  description="This example demonstrates the performance difference between Default and OnPush change detection strategies. Watch the console logs to see how often each component re-renders."
+  [notes]="[
+    'Open the browser console to see change detection logs',
+    'Default child component re-renders on EVERY change detection cycle',
+    'OnPush child component only re-renders when its inputs actually change',
+    'Notice how the global counter triggers Default but not OnPush',
+    'OnPush is essential for performance in large applications'
+  ]"
+/>
+
+<div class="example-container">
+  <div class="controls">
+    <h3>Controls</h3>
+    <p>Global Counter (updates every 100ms): <strong>{{ globalCounter() }}</strong></p>
+    <button (click)="updateChildData()">Update Child Data</button>
+    @if (intervalId !== null) {
+      <button (click)="stopAutoIncrement()">Stop Auto-Increment</button>
+    } @else {
+      <button (click)="startAutoIncrement()">Start Auto-Increment</button>
+    }
+  </div>
+
+  <div class="children">
+    <div class="child-wrapper">
+      <h3>Default Change Detection</h3>
+      <app-default-child [data]="childData()" />
+    </div>
+
+    <div class="child-wrapper">
+      <h3>OnPush Change Detection</h3>
+      <app-onpush-child [data]="childData()" />
+    </div>
+  </div>
+</div>
+

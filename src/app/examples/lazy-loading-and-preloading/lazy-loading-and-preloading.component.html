@@ -1,0 +1,65 @@
+<app-info-panel
+  title="Lazy Loading and Preloading"
+  description="This example demonstrates route-level lazy loading and custom preloading strategies. Open the browser's Network tab to see when modules are loaded."
+  [notes]="[
+    'Lazy loading reduces initial bundle size by splitting code',
+    'Features are loaded on-demand when routes are accessed',
+    'Preloading strategies can load modules in the background',
+    'Custom preloading allows fine-grained control (e.g., based on user role)',
+    'Check Network tab in DevTools to see module loading behavior',
+    'Initial bundle is smaller, improving Time to Interactive (TTI)'
+  ]"
+/>
+
+<div class="example-container">
+  <div class="routes">
+    <h3>Lazy Loaded Routes</h3>
+    <p class="instruction">
+      Click on the routes below to navigate. Watch the Network tab to see when modules are loaded.
+    </p>
+
+    <div class="route-list">
+      @for (route of routes; track route.path) {
+        <div class="route-item">
+          <a [routerLink]="route.path" class="route-link">
+            <strong>{{ route.label }}</strong>
+            <span class="route-description">{{ route.description }}</span>
+          </a>
+        </div>
+      }
+    </div>
+  </div>
+
+  <div class="info-section">
+    <h3>How It Works</h3>
+    <div class="info-grid">
+      <div class="info-card">
+        <h4>Lazy Loading</h4>
+        <p>
+          Routes are configured with <code>loadChildren</code> or <code>loadComponent</code> to
+          dynamically import modules/components only when needed.
+        </p>
+      </div>
+      <div class="info-card">
+        <h4>Preloading Strategy</h4>
+        <p>
+          A custom preloading strategy can preload routes based on conditions (e.g., route data,
+          user permissions, network speed).
+        </p>
+      </div>
+      <div class="info-card">
+        <h4>Performance Benefits</h4>
+        <ul>
+          <li>Smaller initial bundle size</li>
+          <li>Faster Time to Interactive (TTI)</li>
+          <li>Better code splitting</li>
+          <li>Improved perceived performance</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Router outlet for child routes -->
+  <router-outlet />
+</div>
+

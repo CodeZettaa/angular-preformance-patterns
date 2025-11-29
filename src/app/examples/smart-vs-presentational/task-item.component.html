@@ -1,0 +1,16 @@
+<div class="task-item" [class.completed]="task.completed">
+  <div class="task-content">
+    <input
+      type="checkbox"
+      [checked]="task.completed"
+      (change)="onToggle()"
+      class="task-checkbox"
+    />
+    <span class="task-title">{{ task.title }}</span>
+    <span class="task-priority" [ngClass]="getPriorityClass()">
+      {{ task.priority }}
+    </span>
+  </div>
+  <button (click)="onDelete()" class="delete-btn">Delete</button>
+</div>
+

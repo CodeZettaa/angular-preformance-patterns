@@ -1,0 +1,47 @@
+<app-info-panel
+  title="TrackBy with Large Lists"
+  description="This example demonstrates the performance difference between using *ngFor with and without trackBy. Watch the console logs to see how many DOM elements are created/destroyed."
+  [notes]="[
+    'Open the browser console to see component lifecycle logs',
+    'Without trackBy: Angular destroys and recreates ALL items when list changes',
+    'With trackBy: Angular only updates items that actually changed',
+    'Try updating, adding, or removing items to see the difference',
+    'TrackBy is essential for performance with lists of 100+ items'
+  ]"
+/>
+
+<div class="example-container">
+  <div class="controls">
+    <h3>Controls</h3>
+    <p>List Size: <strong>{{ itemsWithoutTrackBy().length }} items</strong></p>
+    <div class="button-group">
+      <button (click)="updateFirstItem()">Update First Item</button>
+      <button (click)="addItem()">Add Item</button>
+      <button (click)="removeFirstItem()">Remove First Item</button>
+      <button (click)="shuffleItems()">Shuffle Items</button>
+    </div>
+  </div>
+
+  <div class="lists">
+    <div class="list-wrapper">
+      <h3>❌ Without trackBy</h3>
+      <p class="warning">All items are recreated on every change!</p>
+      <div class="list-container">
+        @for (item of itemsWithoutTrackBy(); track $index) {
+          <app-list-item [item]="item" />
+        }
+      </div>
+    </div>
+
+    <div class="list-wrapper">
+      <h3>✅ With trackBy</h3>
+      <p class="success">Only changed items are updated!</p>
+      <div class="list-container">
+        @for (item of itemsWithTrackBy(); track trackById($index, item)) {
+          <app-list-item [item]="item" />
+        }
+      </div>
+    </div>
+  </div>
+</div>
+

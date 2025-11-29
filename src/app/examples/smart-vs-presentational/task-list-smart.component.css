@@ -1,0 +1,53 @@
+.task-list-smart {
+  padding: 1.5rem;
+  background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%);
+  border: 2px solid var(--warning);
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(255, 152, 0, 0.2);
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid rgba(255, 152, 0, 0.3);
+}
+
+.header h4 {
+  margin: 0;
+  color: #e65100;
+  font-size: 1.3rem;
+  font-weight: 700;
+}
+
+.header button {
+  padding: 0.75rem 1.5rem;
+  background: var(--gradient-warning);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  box-shadow: var(--shadow-sm);
+  transition: all 0.3s ease;
+}
+
+.header button:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.tasks {
+  margin-bottom: 1rem;
+}
+
+.summary {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid #ddd;
+  font-size: 0.9rem;
+  color: #666;
+}
+

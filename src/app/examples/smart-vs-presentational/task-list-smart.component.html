@@ -1,0 +1,22 @@
+<div class="task-list-smart">
+  <div class="header">
+    <h4>Smart Component</h4>
+    <button (click)="addTask()">Add Task</button>
+  </div>
+
+  @if (loading()) {
+    <p>Loading tasks...</p>
+  } @else {
+    <div class="tasks">
+      @for (task of tasks(); track task.id) {
+        <app-task-item
+          [task]="task"
+          (toggle)="onTaskToggle($event)"
+          (delete)="onTaskDelete($event)"
+        />
+      }
+    </div>
+    <p class="summary">Total: {{ tasks().length }} | Completed: {{ completedCount() }}</p>
+  }
+</div>
+

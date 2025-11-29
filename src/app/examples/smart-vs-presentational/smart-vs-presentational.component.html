@@ -1,0 +1,52 @@
+<app-info-panel
+  title="Smart vs Presentational Components"
+  description="This example demonstrates the Container/Presentational pattern. Smart components handle data and logic, while presentational components are pure UI with OnPush change detection."
+  [notes]="[
+    'Smart components: Fetch data, manage state, handle business logic',
+    'Presentational components: Pure UI, receive Input, emit Output',
+    'Presentational components use OnPush for better performance',
+    'This pattern improves reusability, testability, and performance',
+    'Toggle components to see how they work independently'
+  ]"
+/>
+
+<div class="example-container">
+  <div class="controls">
+    <h3>Controls</h3>
+    <label>
+      <input type="checkbox" [checked]="showSmart()" (change)="showSmart.set(!showSmart())" />
+      Show Smart Component
+    </label>
+    <label>
+      <input
+        type="checkbox"
+        [checked]="showPresentational()"
+        (change)="showPresentational.set(!showPresentational())"
+      />
+      Show Presentational Component
+    </label>
+  </div>
+
+  <div class="components">
+    @if (showSmart()) {
+      <div class="component-wrapper">
+        <h3>Smart Component (Container)</h3>
+        <p class="description">
+          Handles data fetching, state management, and business logic
+        </p>
+        <app-task-list-smart />
+      </div>
+    }
+
+    @if (showPresentational()) {
+      <div class="component-wrapper">
+        <h3>Presentational Component (UI Only)</h3>
+        <p class="description">
+          Pure UI component with &#64;Input/&#64;Output, uses OnPush change detection
+        </p>
+        <app-task-list-presentational />
+      </div>
+    }
+  </div>
+</div>
+
